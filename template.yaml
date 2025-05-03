@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  python3.13
+
+  Sample SAM Template for lambdaPythonVocationalPartialTest
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+
+Resources:
+  myVocationalPartialTestFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      PackageType: Image
+      Architectures:
+        - x86_64
+       # —————— Variables de entorno ——————
+      Environment:
+        Variables:
+          BUCKET_NAME: psychometrictest
+
+      # —————— Permisos S3 GetObject ——————
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+              Resource:
+                - arn:aws:s3:::psychometrictest/*
+
+      # —————— Exponer en API Gateway —————— 
+      Events:
+        GetVocationalPartialTest:
+          Type: HttpApi 
+          Properties:
+            Path: /vocational-partial
+            Method: get
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./hello_world
+      DockerTag: python3.13-v1
+
+Outputs:
+  myVocationalPartialTestFunction:
+    Description: Hello World third Lambda Function ARN
+    Value: !GetAtt myVocationalTestFunction.Arn
+
+  myVocationalPartialTestFunctionIamRole:
+    Description: Implicit IAM Role created for Hello World third function
+    Value: !GetAtt myVocationalPartialTestFunctionRole.Ar

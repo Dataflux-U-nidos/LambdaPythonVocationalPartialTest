@@ -1,0 +1,6 @@
+{
+  "version": "2.0",
+  "routeKey": "GET /vocational-partial",
+  "rawQueryString": "version=1",
+  "queryStringParameters": { "version": "1" }
+}
