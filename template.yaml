@@ -46,10 +46,10 @@ Resources:
       DockerTag: python3.13-v1
 
 Outputs:
-  myVocationalPartialTestFunction:
-    Description: Hello World third Lambda Function ARN
-    Value: !GetAtt myVocationalTestFunction.Arn
+  MyVocationalPartialTestFunctionArn:
+    Description: ARN de la función Lambda VocationalPartialTest
+    Value: !GetAtt myVocationalPartialTestFunction.Arn
 
-  myVocationalPartialTestFunctionIamRole:
-    Description: Implicit IAM Role created for Hello World third function
-    Value: !GetAtt myVocationalPartialTestFunctionRole.Ar
+  MyVocationalPartialTestFunctionIamRoleArn:
+    Description: ARN del rol IAM creado para VocationalPartialTest
+    Value: !GetAtt myVocationalPartialTestFunctionRole.Arn
